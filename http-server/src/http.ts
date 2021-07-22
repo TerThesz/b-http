@@ -5,7 +5,7 @@ function createServer(this: any, options: any, requestListener?: (socket: Socket
   return new (Server as any)(this, options, requestListener);
 }
 
-const prd = createServer((socket: Socket) => {
+createServer((socket: Socket) => {
   socket.end('HTTP/1.1 200 OK\r\n\r\nfart');
 }).listen(3000, '0.0.0.0', () => console.log('🏃 on port 3000'));
 
