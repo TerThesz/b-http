@@ -26,7 +26,7 @@ const parsedRequest = (requestString: string): Request => {
   const [ headers, body ] = divideString(rest, '\r\n\r\n');
 
   const parsedHeaders = {} as { [key: string]: string }; 
-  headers.split('\r\n\r\n').forEach((header) => {
+  headers.split('\r\n').forEach((header) => {
     const [ key, value ] = header.split(': ');
     parsedHeaders[key] = value;
   });
