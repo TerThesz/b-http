@@ -10,4 +10,6 @@ package-lock.json
 !.yarn/versions
 .pnp.*
 
+dist
+
 yarn-error.log

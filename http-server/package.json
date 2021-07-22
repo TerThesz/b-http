@@ -6,13 +6,16 @@
   "author": "TerThesz",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/http.ts"
+    "start": "nodemon src/http.ts",
+    "clean": "rm -rf ./dist/",
+    "build": "yarn clean && tsc --project .",
+    "start-build": "cd dist && node http && cd ../"
   },
   "dependencies": {
     "@types/node": "^16.4.0",
     "net": "^1.0.2",
     "nodemon": "^2.0.12",
     "ts-node": "^10.1.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.0-dev.20210722"
   }
 }
