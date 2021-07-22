@@ -1,0 +1,8 @@
+{
+  "name": "http-server",
+  "version": "1.0.0",
+  "main": "http.ts",
+  "repository": "https://github.com/TerThesz/from-scratch",
+  "author": "TerThesz",
+  "license": "MIT"
+}
