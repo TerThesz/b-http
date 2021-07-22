@@ -1,13 +1,12 @@
-import net from 'net';
+import { Server } from './http_server';
 import { Socket } from 'net';
-import { parse } from './helpers';
 
-const server = net.createServer((socket: Socket) => {
-  socket.on('data', buf => {
-    console.log(parse.request(buf.toString()));
-    socket.write('HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{"hello": "world"}');
-    socket.end();
-  });
-});
+function createServer(this: any, options: any, requestListener?: (socket: Socket) => void) {
+  return new (Server as any)(this, options, requestListener);
+}
 
-server.listen(3000, '0.0.0.0', () => console.log('🏃 on port 3000'));
+createServer((socket: Socket) => {
+  socket.end('HTTP/1.1 200 OK\r\n\r\nfart');
+}).listen(3000, '0.0.0.0', () => console.log('🏃 on port 3000'));
+
+export { createServer };
