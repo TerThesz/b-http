@@ -6,6 +6,7 @@ function createServer(this: any, options: any, requestListener?: (socket: Socket
 }
 
 createServer((req: any, res: any) => {
+  res.status(404).write("sexujem");
 }).listen(3000, '0.0.0.0', () => console.log('🏃 on port 3000'));
 
 export { createServer };

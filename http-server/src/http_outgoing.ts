@@ -35,6 +35,8 @@ OutgoingMessage.prototype.status = function (this: any, code: number) {
   this.statusMessage = statusCode;
 
   this.canBeSent = true;
+
+  return this;
 }
 
 OutgoingMessage.prototype.write = function (this: any, message: string | number | object | Array<any>) {
@@ -45,6 +47,8 @@ OutgoingMessage.prototype.write = function (this: any, message: string | number 
   this.headers['Content-Length'] = message.length;
 
   this.body = message;
+  
+  return this;
 }
 
 const STATUS_CODES: { [key: number]: string } = {

@@ -21,19 +21,3 @@ function Server(this: any, options: any, requestListener?: RequestListener) {
 Server.prototype.listen = function (this: any, ...args: Array<string | number | Function>) { this.netServer.listen(...args) }
 
 export { Server }
-
-// Use this later in a request handler
-/* request: (requestString: string): Request => {
-  const [ firstLine, rest ] = divideString(requestString, '\r\n');
-
-  const [ method, url, protocol ] = firstLine.split(' ', 3);
-  const [ headers, body ] = divideString(rest, '\r\n\r\n');
-
-  const parsedHeaders = {} as { [key: string]: string }; 
-  headers.split('\r\n').forEach((header) => {
-    const [ key, value ] = header.split(': ');
-    parsedHeaders[key] = value;
-  });
-
-  return { protocol, method, url, headers: parsedHeaders, body };
-}, */
