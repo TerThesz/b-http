@@ -16,7 +16,28 @@ InitEvents.prototype.data = function(this: any, requestListener: RequestListener
 
     requestListener(req, res);
 
-    if (res.canBeSent === true) this.socket.end('HTTP/1.1 200 OK');
+    const endLine = '\r\n';
+
+    let response =
+      `${res.protocol} ${res.statusCode} ${res.statusMessage}` + endLine +
+      `Date: ${new Date()}` + endLine +
+      `Server: ${res.server}` + endLine +
+      `Last-Modified: ${res.lastModified}`;
+
+    if (res.headers != {}) {
+      response += endLine;
+      const names = Object.keys(res.headers);
+
+      names.forEach((name: any, index: number) => {
+        response += name + ': ' + res.headers[name] + endLine;
+      });
+    }
+    if (res.body != null) response += endLine + res.body
+
+    if (res.canBeSent === true) {
+      res.wasSent = true;
+      this.socket.end(response);
+    }
   });
 }
 
