@@ -1,5 +1,5 @@
 import { Socket } from 'net';
-import { IncomingMessage } from './http_message';
+import { IngoingMessage } from './http_ingoing';
 import { RequestListener } from './utils/types';
 
 function InitEvents(this: any, socket: Socket) {
@@ -10,12 +10,13 @@ function InitEvents(this: any, socket: Socket) {
 
 InitEvents.prototype.data = function(this: any, requestListener: RequestListener) {
   this.socket.on('data', (buffer: Buffer) => {
-    const _IncomingMessage = new (IncomingMessage as any)(this.socket);
+    const res = () => {
+      const im = () => "prd";
+      return im;
+    }
 
     requestListener(
-      _IncomingMessage.parseRequest(buffer),
-      _IncomingMessage.response(this.socket),
-      _IncomingMessage.nextFunction(this.socket)
+      new (IngoingMessage as any)(this.socket, buffer)
     );
   });
 }
