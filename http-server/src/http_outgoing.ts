@@ -51,6 +51,18 @@ OutgoingMessage.prototype.write = function (this: any, message: string | number 
   return this;
 }
 
+OutgoingMessage.prototype.json = function (this: any, message: object) {
+  if (!this.statusCode) this.status(200);
+  if (typeof message != 'object') throw 'invalid JSON.';
+
+  this.headers['Content-Type'] = 'application/json';
+  this.headers['Content-Length'] = JSON.stringify(message).length;
+
+  this.body = JSON.stringify(message);
+
+  return this;
+}
+
 const STATUS_CODES: { [key: number]: string } = {
   100: 'Continue',                   // RFC 7231 6.2.1
   101: 'Switching Protocols',        // RFC 7231 6.2.2
