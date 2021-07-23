@@ -9,14 +9,18 @@ function InitEvents(this: any, socket: Socket) {
   this.socket = socket;
 }
 
-InitEvents.prototype.data = function(this: any, requestListener: RequestListener) {
+InitEvents.prototype.data = function(this: any, requestListeners: RequestListener[]) {
   console.debug('New request: ' + this.socket.remoteAddress);
   
   this.socket.on('data', (buffer: Buffer) => {
     const req = new (IngoingMessage as any)(this.socket, buffer);
     const res = new (OutgoingMessage as any)(this.socket, buffer);
 
-    requestListener(req, res);
+    requestListeners.every((requestListener) => {
+      let next = false;
+      requestListener(req, res, () => next = true);
+      return next;
+    });
 
     const endLine = '\r\n';
 
