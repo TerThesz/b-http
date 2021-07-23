@@ -10,6 +10,8 @@ function InitEvents(this: any, socket: Socket) {
 }
 
 InitEvents.prototype.data = function(this: any, requestListener: RequestListener) {
+  console.debug('New request: ' + this.socket.remoteAddress);
+  
   this.socket.on('data', (buffer: Buffer) => {
     const req = new (IngoingMessage as any)(this.socket, buffer);
     const res = new (OutgoingMessage as any)(this.socket, buffer);
@@ -32,7 +34,7 @@ InitEvents.prototype.data = function(this: any, requestListener: RequestListener
         response += name + ': ' + res.headers[name] + endLine;
       });
     }
-    if (res.body != null) response += endLine + res.body
+    if (res.body != null) response += endLine + res.body;
 
     if (res.canBeSent === true) {
       res.wasSent = true;
