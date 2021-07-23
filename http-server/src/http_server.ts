@@ -1,11 +1,9 @@
 import net from 'net';
 import { Socket } from 'net';
+import { This, RequestListener } from './utils/types';
+import { InitEvents } from './http_events';
 
-interface This {
-  [key: string]: any
-}
-
-function Server(this: any, options: any, requestListener?: ((socket: Socket) => void)) {
+function Server(this: any, options: any, requestListener?: RequestListener) {
   if (!(this instanceof Server)) return new (Server as any)(this, options, requestListener);
 
   if (typeof options === 'function') {
@@ -17,7 +15,7 @@ function Server(this: any, options: any, requestListener?: ((socket: Socket) => 
 
   if (!requestListener) throw 'Define requestListener.';
 
-  (this as This).netServer = net.createServer(requestListener);
+  (this as This).netServer = net.createServer((socket: Socket) => new (InitEvents as any)(socket).data(requestListener));
 }
 
 Server.prototype.listen = function (this: any, ...args: Array<string | number | Function>) { this.netServer.listen(...args) }
