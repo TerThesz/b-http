@@ -34,8 +34,6 @@ router.prototype.callFunctions = function (this: any, req: any, res: any) {
 
     return next;
   });
-
-  this.functions = [];
 }
 
 export { router };
