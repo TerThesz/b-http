@@ -12,6 +12,7 @@ function router(this: any) {
   this.update = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'UPDATE'); };
   this.patch = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'PATCH'); };
   this.delete = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'DELETE'); };
+  this.all = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, '*'); };
 }
 
 router.prototype.callFunctions = function (this: any, req: any, res: any) {
@@ -22,7 +23,7 @@ router.prototype.callFunctions = function (this: any, req: any, res: any) {
 
     if (!fnObject.method || !fnObject.path || !fnObject.fns) throw 'Invalid router.';
 
-    if (fnObject.method === method && fnObject.path === url) 
+    if ((fnObject.method === method || fnObject.method === '*') && fnObject.path === url) 
     fnObject.fns.every((fn: Function) => {
       fn(req, res, () => next = true);
 
