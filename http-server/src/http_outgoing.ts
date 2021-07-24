@@ -27,6 +27,8 @@ Object.defineProperty(OutgoingMessage.prototype, 'headers', {
 });
 
 OutgoingMessage.prototype.status = function (this: any, code: number) {
+  if (this.wasSent) throw 'Cannot change response after it was already send.';
+
   const statusCode = STATUS_CODES[code];
 
   if (!statusCode) throw 'Invalid Code.';
