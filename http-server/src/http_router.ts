@@ -17,8 +17,6 @@ function router(this: any) {
 router.prototype.callFunctions = function (this: any, req: any, res: any) {
   let next = false;
 
-  console.log(JSON.stringify(this.functions, null, 2));
-
   this.functions.every((fnObject: { [key: string]: any }) => {
     const { method, url } = req;
 
@@ -35,6 +33,8 @@ router.prototype.callFunctions = function (this: any, req: any, res: any) {
 
     return next;
   });
+
+  this.functions = [];
 }
 
 export { router };

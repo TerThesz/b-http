@@ -9,10 +9,9 @@ function createServer(this: any, ...requestListeners: RequestListener[]) {
 
 const Router = new (router as any);
 
-console.log({ router, Router });
-
 createServer(Router.get('/', (req: any, res: any, next: any) => {
   console.log('prd');
+  next();
 }), Router.get('/', (req: any, res: any, next: any) => {
   res.write("prdim");
 })).listen(3000, '0.0.0.0', () => console.log('🏃 on port 3000'));
