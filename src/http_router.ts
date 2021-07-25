@@ -13,6 +13,8 @@ function router(this: any) {
   this.patch = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'PATCH'); };
   this.delete = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'DELETE'); };
   this.all = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, '*'); };
+
+  return this;
 }
 
 router.prototype.callFunctions = function (this: any, req: any, res: any) {

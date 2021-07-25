@@ -1,5 +1,5 @@
 {
-  "name": "http-server",
+  "name": "@terthesz/tbhttp",
   "version": "1.0.0",
   "main": "src/http.ts",
   "repository": "https://github.com/TerThesz/from-scratch",
