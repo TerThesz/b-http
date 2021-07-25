@@ -9,7 +9,9 @@
     "start": "nodemon src/http.ts",
     "clean": "rm -rf ./dist/",
     "build": "yarn clean && tsc --project .",
-    "start-build": "cd dist && node http && cd ../"
+    "start-build": "cd dist && node http && cd ../",
+    "build-package": "yarn build && cd dist",
+    "test": "echo test"
   },
   "dependencies": {
     "@types/node": "^16.4.0",
