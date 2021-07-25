@@ -1,5 +1,7 @@
 import { Socket } from 'net';
 import { divideString } from './utils';
+import { resolve } from 'path';
+import { sync } from 'glob';
 
 const kHeaders = Symbol('kHeaders');
 
@@ -26,10 +28,14 @@ function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   this.url = url;
   this.protocol = protocol;
 
+  const files = sync(resolve('./src/headers/**/*.ts'));
   headers.split('\r\n').forEach((header: string) => {
     const [ key, value ] = header.split(': ');
     this[kHeaders][key] = value;
     this.rawHeaders.push(header);
+  
+    const file = files.find((file: string) => file.split('/').slice(-1)[0].replace('.ts', '') === key.toLowerCase());
+    if (file) (require(file))(socket, method);
   });
 
   this.body = body;
