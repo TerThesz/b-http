@@ -3,6 +3,8 @@ import { divideString } from './utils';
 
 const kHeaders = Symbol('kHeaders');
 
+console.log("testing");
+
 function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   this.socket = socket;
 
