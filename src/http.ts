@@ -9,7 +9,8 @@ function createServer(this: any, ...requestListeners: RequestListener[]) {
 
 const Router: any = router;
 
-createServer(Route1(), Route2()).listen(3000, '0.0.0.0', () => console.log('🏃 on port 3000'));
+// Testing
+/* createServer(Route1(), Route2()).listen(3000, '0.0.0.0', () => console.log('🏃 on port 3000'));
 
 function Route1() {
   const _router = new Router();
@@ -37,6 +38,6 @@ function Route2() {
   });
 
   return _router;
-}
+} */
 
 export { createServer, Router };

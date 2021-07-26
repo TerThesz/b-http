@@ -1,6 +1,6 @@
 {
-  "name": "@terthesz/tb-http",
-  "version": "1.1.1",
+  "name": "tb-http",
+  "version": "1.1.0",
   "main": "src/http.ts",
   "repository": "https://github.com/TerThesz/tb-http",
   "author": "TerThesz",
