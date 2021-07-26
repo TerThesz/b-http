@@ -15,6 +15,6 @@ jobs:
       - id: package_version
       - uses: martinbeentjes/npm-get-version-action@master
         with:
-          path: package/your-http
+          path: your-http
       if: ${{ steps.package-version.outputs.current-version == steps.format_script.outputs.prop }}
           run: exit 1
