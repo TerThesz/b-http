@@ -19,7 +19,7 @@ jobs:
       - run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
-      - id: zip build
+      - id: zip_build
       - uses: papeloto/action-zip@v1
         with:
           files: dist/
