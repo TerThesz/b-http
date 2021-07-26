@@ -34,10 +34,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - id: upload linux artifact
       - uses: actions/upload-release-asset@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
             asset_path: ./your-http.zip
             asset_name: your-http.zip
             asset_content_type: application/zip
+          env:
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
