@@ -10,13 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: version
-        uses: notiz-dev/github-action-json-property@release
-        with:
-          path: '../../package.json'
-          prop_path: 'version'
+        uses: nyaa8/package-version@v1
       - id: package_version
         uses: martinbeentjes/npm-get-version-action@master
         with:
           path: your-http
-      - if: ${{ steps.package-version.outputs.current-version == steps.version.outputs.prop }}
+      - if: ${{ steps.package-version.outputs.current-version == env.PACKAGE_VERSION }}
         run: exit 1
