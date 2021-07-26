@@ -1,4 +1,4 @@
-name: npm package
+name: build
 on:
   release:
     types: [created]
