@@ -1,29 +1,23 @@
-name: build
+name: publish-package
 on:
   release:
     types: [created]
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs_on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 16
-
-        name: install
+        id: install-dependencies
       - run: yarn install
-
-        name: test
-      - run: yarn test
-
-        name: build
+        id: build-package
       - run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
       - run: cd ./dist
-
-        name: publish
+        id: publish-package
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
