@@ -15,7 +15,7 @@ jobs:
       - run: yarn install
 
         name: build
-      - run: yarn build-package
+      - run: yarn build
       
         name: test
       - run: yarn test
