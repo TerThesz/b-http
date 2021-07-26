@@ -12,13 +12,13 @@ jobs:
       - name: build_package
         id: build_package
         uses: actions/checkout@v1
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: 16
       - run: yarn install
-        run: yarn build
-        run: cp ./package.json ./dist/package.json
-        run: cp ./yarn.lock ./dist/yarn.lock
+      - run: yarn build
+      - run: cp ./package.json ./dist/package.json
+      - run: cp ./yarn.lock ./dist/yarn.lock
       - id: zip_build
         uses: papeloto/action-zip@v1
         with:
