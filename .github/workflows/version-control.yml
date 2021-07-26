@@ -1,7 +1,8 @@
 name: version-control
 on:
-  pull-request:
-    branches: [staging]
+  pull_request:
+    branches:
+      - staging
 jobs:
   check-version:
     runs_on: ubuntu_latest
