@@ -10,14 +10,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
-        id: install-dependencies
+      - id: install-dependencies
       - run: yarn install
-        id: build-package
+      - id: build-package
       - run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
       - run: cd ./dist
-        id: publish-package
+      - id: publish-package
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}

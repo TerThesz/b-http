@@ -6,12 +6,12 @@ jobs:
   check-version:
     runs_on: ubuntu_latest
     steps:
-        id: version
+      - id: version
       - uses: notiz-dev/github-action-json-property@release
         with:
           path: 'package.json'
           prop_path: 'version'
-        id: package_version
+      - id: package_version
       - uses: martinbeentjes/npm-get-version-action@master
         with:
           path: package/your-http
