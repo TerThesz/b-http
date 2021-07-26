@@ -1,0 +1,43 @@
+name: tests
+on:
+  workflow_run:
+    workflows: ["version-control"]
+    types: [completed]
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+        run: echo ADD TESTS!!
+        name: create-release
+        id: build_package
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build
+      - run: cp ./package.json ./dist/package.json
+      - run: cp ./yarn.lock ./dist/yarn.lock
+        id: zip build
+      - uses: papeloto/action-zip@v1
+        with:
+          files: dist/
+          dest: your-http.zip
+      - uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          tag_name: ${{ steps.format_script.outputs.prop }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        id: upload linux artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./your-http.zip
+          asset_name: your-http.zip
+          asset_content_type: application/zip
