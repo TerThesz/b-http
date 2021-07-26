@@ -1,16 +1,16 @@
 {
   "name": "tb-http",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "src/http.ts",
   "repository": "https://github.com/TerThesz/tb-http",
   "author": "TerThesz",
   "license": "MIT",
+  "types": "index.d.ts",
   "scripts": {
     "start": "nodemon src/http.ts",
     "clean": "rm -rf ./dist/",
     "build": "yarn clean && tsc --project .",
     "start-build": "cd dist && node http && cd ../",
-    "build-package": "yarn build && cd dist",
     "test": "echo test"
   },
   "dependencies": {
