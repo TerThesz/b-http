@@ -8,17 +8,17 @@ jobs:
     runs_on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+        uses: actions/setup-node@v1
         with:
           node-version: 16
       - id: install_dependencies
-      - run: yarn install
+        run: yarn install
       - id: build_package
-      - run: yarn build
-      - run: cp ./package.json ./dist/package.json
-      - run: cp ./yarn.lock ./dist/yarn.lock
-      - run: cd ./dist
+        run: yarn build
+        run: cp ./package.json ./dist/package.json
+        run: cp ./yarn.lock ./dist/yarn.lock
+        run: cd ./dist
       - id: publish_package
-      - uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
