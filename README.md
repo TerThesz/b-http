@@ -92,6 +92,7 @@ yarn add your-http
 | method | Request method | string |
 | url | Request endpoint | string |
 | body | Request body | any |
+| ip | Client IP | string |
 
 ##### 3.B B Response (res)
 ###### All response information is stored in here (headers, body...).
@@ -118,7 +119,21 @@ yarn add your-http
 
 ###### Type: Function. No arguments or values.
 
+##### 4. Create a server
+###### Usage
+``` javascript
+  http.createServer(router1, router2...).listen(port, ip[optional], callback);
+```
+###### Example
+``` javascript
+  http.createServer(router1).listen(3000, '0.0.0.0', () => 
+    console.log('🏃 on port 3000.'));
+```
+###### Tip: Use ip: '0.0.0.0' to get IPv4 from req.ip
+
 <br/>
 <br/>
 
 ###### More features coming soon!
+
+#### WARNING: I did not add any security features yet.

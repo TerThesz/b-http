@@ -11,6 +11,8 @@ function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   this[kHeaders] = {};
   this.rawHeaders = [];
 
+  this.ip = socket.remoteAddress;
+
   this.protocol = null;
   this.method = null;
   this.url = null;
