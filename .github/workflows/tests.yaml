@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-        run: yarn install
+      - run: yarn install
         run: yarn build
         run: cp ./package.json ./dist/package.json
         run: cp ./yarn.lock ./dist/yarn.lock
