@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: version
-        uses: nyaa8/package-version@v1
+        uses: actions/checkout@v1
+      - uses: nyaa8/package-version@v1
       - id: package_version
         uses: martinbeentjes/npm-get-version-action@master
         with:
