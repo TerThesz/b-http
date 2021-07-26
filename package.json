@@ -1,5 +1,5 @@
 {
-  "name": "tb-http",
+  "name": "b-http",
   "version": "1.2.0",
   "main": "src/http.ts",
   "repository": "https://github.com/TerThesz/tb-http",
