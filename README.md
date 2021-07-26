@@ -119,10 +119,10 @@ yarn add your-http
 
 ###### Type: Function. No arguments or values.
 
-##### 4. Create a server
+##### 4. How to create a server
 ###### Usage
 ``` javascript
-  http.createServer(router1, router2...).listen(port, ip[optional], callback);
+  http.createServer(router1, router2...).listen(port, ip[optional], callback[optional]);
 ```
 ###### Example
 ``` javascript
