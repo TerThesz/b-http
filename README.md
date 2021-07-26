@@ -106,10 +106,12 @@ yarn add your-http
 | body | Response body | any |
 | server | Server name | string |
 | lastModified | Last change to the response | Date |
-| canBeSent, wasSent | Values used by the http server. Do not change. | boolean |
+| canBeSent, wasSent | Values used by the http server. | boolean |
 | status(number) | Change status code of the response | Function |
 | write(message) | Set content type to text and change response body | Function |
 | json(object) | Set content type to application/json and change response body | Function |
+
+##### DO NOT MANUALLY CHANGE RESPONSE INFORMATION. Use response functions instead ( All values with type: `'Function' or 'Object Property'` );
 
 ##### 3.B C NextFunction (next)
 ###### If called, next router will run after the current one finishes.

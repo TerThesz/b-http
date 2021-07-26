@@ -12,6 +12,13 @@
     "start-build": "cd dist && node http && cd ../",
     "test": "echo test"
   },
+  "keywords": [
+    "http",
+    "server",
+    "web server",
+    "web"
+  ],
+  "bugs": "https://github.com/TerThesz/your-http/issues",
   "dependencies": {
     "@types/glob": "^7.1.4",
     "@types/node": "^16.4.0",
