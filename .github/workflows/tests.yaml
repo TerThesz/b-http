@@ -32,7 +32,7 @@ jobs:
           tag_name: ${{ steps.format_script.outputs.prop }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        - id: upload linux artifact
+      - id: upload linux artifact
         uses: actions/upload-release-asset@v1
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
