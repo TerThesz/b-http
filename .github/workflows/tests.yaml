@@ -10,7 +10,7 @@ jobs:
     steps:
         run: echo ADD TESTS!!
         name: create-release
-        id: build_package
+      - id: build_package
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -19,20 +19,20 @@ jobs:
       - run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
-        id: zip build
+      - id: zip build
       - uses: papeloto/action-zip@v1
         with:
           files: dist/
           dest: your-http.zip
       - uses: actions/create-release@v1
-        id: create_release
+      - id: create_release
         with:
           draft: false
           prerelease: false
           tag_name: ${{ steps.format_script.outputs.prop }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        id: upload linux artifact
+      - id: upload linux artifact
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
