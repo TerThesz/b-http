@@ -1,11 +1,10 @@
 {
-  "name": "twb-http",
-  "version": "1.2.0",
-  "main": "src/http.ts",
+  "name": "your-http",
+  "version": "1.2.2",
+  "main": "http.js",
   "repository": "https://github.com/TerThesz/tb-http",
   "author": "TerThesz",
   "license": "MIT",
-  "types": "index.d.ts",
   "scripts": {
     "start": "nodemon src/http.ts",
     "clean": "rm -rf ./dist/",

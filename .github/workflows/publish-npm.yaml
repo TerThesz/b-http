@@ -14,11 +14,14 @@ jobs:
         name: install
       - run: yarn install
 
-        name: build
-      - run: yarn build
-      
         name: test
       - run: yarn test
+
+        name: build
+      - run: yarn build
+      - run: cp ./package.json ./dist/package.json
+      - run: cp ./yarn.lock ./dist/yarn.lock
+      - run: cd ./dist
 
         name: publish
       - uses: JS-DevTools/npm-publish@v1
