@@ -25,11 +25,13 @@ jobs:
           files: dist/
           dest: your-http.zip
       - id: create_release
+        uses: actions/checkout@v1
+      - uses: nyaa8/package-version@v1
         uses: actions/create-release@v1
         with:
           draft: false
           prerelease: false
-          tag_name: ${{ steps.format_script.outputs.prop }}
+          tag_name: ${{ env.PACKAGE_VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - id: upload_linux_artifact
