@@ -12,7 +12,7 @@
     "build": "yarn clean && tsc --project .",
     "start-build": "cd dist && node http && cd ../",
     "test": "echo test",
-    "local-test": "nodemon testing/testing.ts"
+    "local-test": "nodemon ./testing/testing.ts"
   },
   "keywords": [
     "http",
