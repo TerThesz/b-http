@@ -4,9 +4,12 @@ import { resolve } from 'path';
 import { sync } from 'glob';
 
 const kHeaders = Symbol('kHeaders');
+const kQuery = Symbol('kQuery');
 
 function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   this.socket = socket;
+
+  console.log(buffer.toString());
 
   this[kHeaders] = {};
   this.rawHeaders = [];
@@ -16,6 +19,7 @@ function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   this.protocol = null;
   this.method = null;
   this.url = null;
+  this[kQuery] = {};
   this.body = null;
 
   // Parse request
@@ -23,12 +27,22 @@ function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
 
   const [ firstLine, rest ] = divideString(requestString, '\r\n');
 
-  const [ method, url, protocol ] = firstLine.split(' ', 3);
+  const [ method, urlAndQuery, protocol ] = firstLine.split(' ', 3);
   const [ headers, body ] = divideString(rest, '\r\n\r\n');
 
   this.method = method;
-  this.url = url;
   this.protocol = protocol;
+
+  const [ url, rawQuery ] = urlAndQuery.split('?');
+  this.url = url;
+
+  if (rawQuery) {
+    const query = rawQuery.split('&');
+    query.forEach((parameter: string) => {
+      const [ key, value ] = parameter.split('=');
+      this[kQuery][key] = value;
+    });
+  }
 
   const files = sync(resolve('./src/headers/**/*.ts'));
   headers.split('\r\n').forEach((header: string) => {
@@ -49,6 +63,15 @@ Object.defineProperty(IngoingMessage.prototype, 'headers', {
   },
   set: function(val) {
     this[kHeaders] = val;
+  }
+});
+
+Object.defineProperty(IngoingMessage.prototype, 'query', {
+  get: function() {
+    return this[kQuery];
+  },
+  set: function(val) {
+    this[kQuery] = val;
   }
 });
 

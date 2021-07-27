@@ -1,6 +1,6 @@
 {
   "name": "your-http",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "main": "http.js",
   "description": "A simple http server made for fun",
   "repository": "https://github.com/TerThesz/your-http",
@@ -11,7 +11,8 @@
     "clean": "rm -rf ./dist/",
     "build": "yarn clean && tsc --project .",
     "start-build": "cd dist && node http && cd ../",
-    "test": "echo test"
+    "test": "echo test",
+    "local-test": "nodemon ./testing/testing.ts"
   },
   "keywords": [
     "http",
