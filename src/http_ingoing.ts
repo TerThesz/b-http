@@ -9,8 +9,6 @@ const kQuery = Symbol('kQuery');
 function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   this.socket = socket;
 
-  console.log(buffer.toString());
-
   this[kHeaders] = {};
   this.rawHeaders = [];
 
