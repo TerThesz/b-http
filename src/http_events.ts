@@ -2,6 +2,8 @@ import { Socket } from 'net';
 import { IngoingMessage } from './http_ingoing';
 import { OutgoingMessage } from './http_outgoing';
 import { RequestListener } from './utils/types';
+import { resolve } from 'path';
+import { sync } from 'glob';
 
 function InitEvents(this: any, socket: Socket) {
   if (!socket) throw 'Give socket >:(';
