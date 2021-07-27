@@ -7,11 +7,10 @@ function InitEvents(this: any, socket: Socket) {
   if (!socket) throw 'Give socket >:(';
 
   this.socket = socket;
+  this.closedConnection = false;
 }
 
 InitEvents.prototype.data = function(this: any, routers: any[]) {
-  console.debug('New request: ' + this.socket.remoteAddress);
-  
   this.socket.on('data', (buffer: Buffer) => {
     const req = new (IngoingMessage as any)(this.socket, buffer);
     const res = new (OutgoingMessage as any)(this.socket, buffer);
@@ -36,11 +35,15 @@ InitEvents.prototype.data = function(this: any, routers: any[]) {
     }
     if (res.body != null) response += endLine + res.body;
 
+    if (this.closedConnection === true) return;
     if (res.canBeSent === true) {
       res.wasSent = true;
       this.socket.end(response);
     }
   });
+
+  this.socket.on('error', () => this.closedConnection = true);
+  this.socket.on('disconnect', () => this.closedConnection = true);
 }
 
 export { InitEvents };
