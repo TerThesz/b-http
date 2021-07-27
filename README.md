@@ -87,13 +87,14 @@ yarn add your-http
 | Value | Description | Type |
 | ------|:------------|-----:|
 | socket | TCP socket | Socket |
-| headers() | Returns all headers | Object Property |
+| headers | Returns all headers | Object Property |
 | rawHeaders | All raw headers | Array |
 | protocol | Request HTTP protocol | string |
 | method | Request method | string |
 | url | Request endpoint | string |
 | body | Request body | any |
 | ip | Client IP | string |
+| query | Returns all query parameters | Object Property |
 
 ##### 3.B B Response (res)
 ###### All response information is stored in here (headers, body...).
