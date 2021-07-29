@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: version
-        uses: EndBug/version-check@v1
+        uses: actions/checkout@v1
+      - uses: EndBug/version-check@v1
         with:
-          file-url: https://unpkg.com/your-http@1.3.2/package.json
+          file-url: https://unpkg.com/your-http@latest/package.json
           static-checking: localIsNew
       - if: steps.check.outputs.changed == 'false'
         run: exit 69
