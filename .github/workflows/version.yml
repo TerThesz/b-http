@@ -3,7 +3,6 @@ on:
   pull_request:
     branches:
       - staging
-    types: [closed]
 jobs:
   check-version:
     if: github.event.pull_request.merged == true
@@ -17,4 +16,4 @@ jobs:
         with:
           path: your-http
       - if: ${{ steps.package-version.outputs.current-version == env.PACKAGE_VERSION }}
-        run: exit 1
+        run: exit 69
