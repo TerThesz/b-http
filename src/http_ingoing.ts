@@ -14,7 +14,7 @@ function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   this.rawHeaders = [];
 
   this.ip = socket.remoteAddress;
-  this[kCookies] = [];
+  this[kCookies] = {};
 
   this.protocol = null;
   this.method = null;
@@ -84,7 +84,7 @@ Object.defineProperty(IngoingMessage.prototype, 'query', {
   }
 });
 
-IngoingMessage.prototype.setCookie = function(this: any, key: string, value: string, settings: {}) {
+IngoingMessage.prototype.setCookie = function setCookie(this: any, key: string, value: string, settings: {}) {
 
 }
 

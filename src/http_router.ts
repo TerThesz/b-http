@@ -3,21 +3,19 @@ function router(this: any) {
 
   function settings(_this: any, path: string, fns: Function[], method: string) {
     _this.functions.push({ method, path, fns });
-
-    return _this;
   }
 
-  this.get = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'GET'); };
-  this.push = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'PUSH'); };
-  this.update = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'UPDATE'); };
-  this.patch = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'PATCH'); };
-  this.delete = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, 'DELETE'); };
-  this.all = function(this: any, path: string, ...fns: Function[]) { return settings(this, path, fns, '*'); };
+  this.get = function(this: any, path: string, ...fns: Function[]) { settings(this, path, fns, 'GET'); };
+  this.push = function(this: any, path: string, ...fns: Function[]) { settings(this, path, fns, 'PUSH'); };
+  this.update = function(this: any, path: string, ...fns: Function[]) { settings(this, path, fns, 'UPDATE'); };
+  this.patch = function(this: any, path: string, ...fns: Function[]) { settings(this, path, fns, 'PATCH'); };
+  this.delete = function(this: any, path: string, ...fns: Function[]) { settings(this, path, fns, 'DELETE'); };
+  this.all = function(this: any, path: string, ...fns: Function[]) { settings(this, path, fns, '*'); };
 
   return this;
 }
 
-router.prototype.callFunctions = function (this: any, req: any, res: any) {
+router.prototype.callFunctions = function callFunctions(this: any, req: any, res: any) {
   let next = false;
 
   this.functions.every((fnObject: { [key: string]: any }) => {

@@ -1,9 +1,6 @@
 import { Socket } from 'net';
 import { IngoingMessage } from './http_ingoing';
 import { OutgoingMessage } from './http_outgoing';
-import { RequestListener } from './utils/types';
-import { resolve } from 'path';
-import { sync } from 'glob';
 
 function InitEvents(this: any, socket: Socket) {
   if (!socket) throw 'Give socket >:(';
@@ -12,7 +9,7 @@ function InitEvents(this: any, socket: Socket) {
   this.closedConnection = false;
 }
 
-InitEvents.prototype.data = function(this: any, routers: any[]) {
+InitEvents.prototype.data = function data(this: any, routers: any[]) {
   this.socket.on('data', (buffer: Buffer) => {
     const req = new (IngoingMessage as any)(this.socket, buffer);
     const res = new (OutgoingMessage as any)(this.socket, buffer);

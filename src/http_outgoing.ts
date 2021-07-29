@@ -26,7 +26,7 @@ Object.defineProperty(OutgoingMessage.prototype, 'headers', {
   }
 });
 
-OutgoingMessage.prototype.status = function (this: any, code: number) {
+OutgoingMessage.prototype.status = function status(this: any, code: number) {
   if (this.wasSent) throw 'Cannot change response after it was already send.';
 
   const statusCode = STATUS_CODES[code];
@@ -41,7 +41,7 @@ OutgoingMessage.prototype.status = function (this: any, code: number) {
   return this;
 }
 
-OutgoingMessage.prototype.write = function (this: any, message: string | number | object | Array<any>) {
+OutgoingMessage.prototype.write = function write(this: any, message: string | number | object | Array<any>) {
   if (typeof message != 'string') message = message.toString();
   if (!this.statusCode) this.status(200);
 
@@ -53,7 +53,7 @@ OutgoingMessage.prototype.write = function (this: any, message: string | number 
   return this;
 }
 
-OutgoingMessage.prototype.json = function (this: any, message: object) {
+OutgoingMessage.prototype.json = function json(this: any, message: object) {
   if (!this.statusCode) this.status(200);
   if (typeof message != 'object') throw 'invalid JSON.';
 
