@@ -11,10 +11,11 @@ jobs:
         uses: actions/checkout@v1
       - uses: EndBug/version-check@v1
         with:
+          diff-search: true
           file-url: https://unpkg.com/your-http@latest/package.json
           static-checking: localIsNew
-      - name: ${{ steps.check.outputs.changed }}
+      - run: echo ${{ steps.check.outputs.changed }}
+      - name: version check
         if: ${{ steps.check.outputs.changed == 'false' }}
         run: exit 69
-        
         
