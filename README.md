@@ -95,6 +95,7 @@ yarn add your-http
 | body | Request body | any |
 | ip | Client IP | string |
 | query | Returns all query parameters | Object Property |
+| cookies | Returns all cookies | Object Property |
 
 ##### 3.B B Response (res)
 ###### All response information is stored in here (headers, body...).
@@ -113,6 +114,8 @@ yarn add your-http
 | status(number) | Change status code of the response | Function |
 | write(message) | Set content type to text and change response body | Function |
 | json(object) | Set content type to application/json and change response body | Function |
+| cookies | Returns all cookies | Object Property |
+| setCookie(name, value, settings: object) | Adds a cookie to the response headers | Function |
 
 ##### DO NOT MANUALLY CHANGE RESPONSE INFORMATION. Use response functions instead ( All values with type: `'Function' or 'Object Property'` );
 

@@ -5,16 +5,16 @@ import { sync } from 'glob';
 
 const kHeaders = Symbol('kHeaders');
 const kQuery = Symbol('kQuery');
+const kCookies = Symbol('kCookies');
 
 function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   this.socket = socket;
-
-  console.log(buffer.toString());
 
   this[kHeaders] = {};
   this.rawHeaders = [];
 
   this.ip = socket.remoteAddress;
+  this[kCookies] = {};
 
   this.protocol = null;
   this.method = null;
@@ -47,11 +47,11 @@ function IngoingMessage(this: any, socket: Socket, buffer: Buffer) {
   const files = sync(resolve('./src/headers/**/*.ts'));
   headers.split('\r\n').forEach((header: string) => {
     const [ key, value ] = header.split(': ');
-    this[kHeaders][key] = value;
+    this[kHeaders][key.toLocaleLowerCase()] = value;
     this.rawHeaders.push(header);
   
     const file = files.find((file: string) => file.split('/').slice(-1)[0].replace('.ts', '') === key.toLowerCase());
-    if (file) (require(file))(socket, method);
+    if (file) (require(file))(this);
   });
 
   this.body = body;
@@ -66,12 +66,21 @@ Object.defineProperty(IngoingMessage.prototype, 'headers', {
   }
 });
 
+Object.defineProperty(IngoingMessage.prototype, 'cookies', {
+  get: function() {
+    return this[kCookies];
+  },
+  set: function(val) {
+    this[kCookies] = val;
+  }
+});
+
 Object.defineProperty(IngoingMessage.prototype, 'query', {
   get: function() {
     return this[kQuery];
   },
   set: function(val) {
-    this[kQuery] = val;
+    this[kCookies] = val;
   }
 });
 

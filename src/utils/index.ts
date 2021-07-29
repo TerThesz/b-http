@@ -1,3 +1,4 @@
-import divideString from './divide-string';
+import divideString from './divide_string';
+import verifyCookie from './verify_cookie';
 
-export { divideString };
+export { divideString, verifyCookie };
