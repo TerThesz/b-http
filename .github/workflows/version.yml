@@ -6,7 +6,7 @@ on:
 env:
   URL: https://registry.npmjs.org/your-http
 jobs:
-  kakanica:
+  version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
