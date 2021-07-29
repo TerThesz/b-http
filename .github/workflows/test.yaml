@@ -32,7 +32,6 @@ jobs:
         with:
           draft: false
           prerelease: false
-          description: ${{ "https://npmjs.com/package/your-http/" + env.PACKAGE_VERSION }}
           tag_name: ${{ env.PACKAGE_VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
