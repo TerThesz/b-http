@@ -3,7 +3,6 @@ const Cookie = (ingoingMessage: any) => {
 
   rawCookies.forEach((cookie: string) => {
     const [ key, value ] = cookie.split('=');
-    console.log({key, value})
     ingoingMessage.cookies[key] = value;
   });
 };
