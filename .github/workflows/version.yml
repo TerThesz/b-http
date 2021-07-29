@@ -8,11 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: version
-        uses: actions/checkout@v1
-      - uses: nyaa8/package-version@v1
-      - id: package_version
-        uses: martinbeentjes/npm-get-version-action@master
-      - run: echo ${{ steps.package-version.outputs.current-version }}
-      - run: echo ${{ env.PACKAGE_VERSION }}
-      - if: ${{ steps.package-version.outputs.current-version == env.PACKAGE_VERSION }}
-        run: exit 69
+        uses: technote-space/package-version-check-action@v1
+        with:
+          BRANCH_PREFIX: staging/
