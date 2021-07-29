@@ -8,7 +8,6 @@ jobs:
   run-tests:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - run: echo ADD TESTS!!
       - name: build_package
@@ -36,4 +35,3 @@ jobs:
           tag_name: ${{ env.PACKAGE_VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          
