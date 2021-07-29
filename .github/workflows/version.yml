@@ -9,12 +9,13 @@ jobs:
     steps:
       - id: version
         uses: actions/checkout@v1
-      - uses: EndBug/version-check@v1
+      - id: check_version
+        uses: EndBug/version-check@v1
         with:
           diff-search: true
           file-url: https://unpkg.com/your-http@latest/package.json
           static-checking: localIsNew
-      - run: echo ${{ steps.check.outputs.changed }}
+      - run: echo ${{ steps.check_version.outputs.changed }}
       - name: version check
-        if: ${{ steps.check.outputs.changed == 'false' }}
+        if: ${{ steps.check_version.outputs.changed == 'false' }}
         run: exit 69
