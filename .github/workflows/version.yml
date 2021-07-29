@@ -19,3 +19,4 @@ jobs:
       - name: version check
         if: ${{ steps.check_version.outputs.changed == 'false' }}
         run: exit 69
+
