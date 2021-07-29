@@ -36,3 +36,4 @@ jobs:
           tag_name: ${{ env.PACKAGE_VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          
