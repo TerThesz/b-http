@@ -13,5 +13,6 @@ jobs:
         with:
           file-url: https://unpkg.com/your-http@latest/package.json
           static-checking: localIsNew
-      - if: steps.check.outputs.changed == 'false'
+      - name: Check if changed
+          if: steps.check.outputs.changed == 'false'
         run: exit 69
