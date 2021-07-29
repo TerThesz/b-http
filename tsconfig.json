@@ -12,7 +12,7 @@
     "removeComments": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "noImplicitUseStrict": true,
+    "noImplicitUseStrict": false,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "noUnusedLocals": false,
