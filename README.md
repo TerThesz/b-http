@@ -5,7 +5,7 @@
   </div>
 
   <div style="margin: 10px 0 0 auto;">
-    <img style="align:left;" src="https://github.com/TerThesz/your-http/actions/workflows/version.yml/badge.svg" />
+    <img style="align:left;" src="https://github.com/TerThesz/your-http/actions/workflows/publish.yaml/badge.svg" />
     <img src="https://github.com/TerThesz/your-http/actions/workflows/test.yaml/badge.svg" />
     <img src="https://img.shields.io/npm/v/your-http?label=version" />
     <img src="https://img.shields.io/github/license/TerThesz/your-http" />
