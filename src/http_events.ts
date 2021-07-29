@@ -32,6 +32,17 @@ InitEvents.prototype.data = function data(this: any, routers: any[]) {
         response += name + ': ' + res.headers[name] + endLine;
       });
     }
+
+    if (res.cookies.length) {
+      res.cookies.forEach((cookie: { name: string, value: string, settings: { [key: string]: any } }) => {
+        response += `Set-Cookie: ${cookie.name}=${cookie.value}`;
+        Object.keys(cookie.settings).forEach((setting: string) => {
+          response += `; ${setting}${cookie.settings[setting] !== null ? '=' + cookie.settings[setting] : null}`;
+        });
+        response += endLine;
+      });
+    }
+
     if (res.body != null) response += endLine + res.body;
 
     if (this.closedConnection === true) return;

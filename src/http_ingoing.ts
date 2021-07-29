@@ -84,8 +84,4 @@ Object.defineProperty(IngoingMessage.prototype, 'query', {
   }
 });
 
-IngoingMessage.prototype.setCookie = function setCookie(this: any, key: string, value: string, settings: {}) {
-
-}
-
 export { IngoingMessage };
