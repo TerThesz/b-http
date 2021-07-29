@@ -17,3 +17,4 @@ jobs:
       - name: Check if changed
         if: ${{ steps.check.outputs.changed == 'false' }}
         run: exit 69
+        
