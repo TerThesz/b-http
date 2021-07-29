@@ -3,20 +3,24 @@ on:
   pull_request:
     branches:
       - staging
+env:
+  URL: https://registry.npmjs.org/your-http
 jobs:
-  check-version:
+  kakanica:
     runs-on: ubuntu-latest
     steps:
-      - id: version
-        uses: actions/checkout@v1
-      - id: check_version
-        uses: EndBug/version-check@v1
-        with:
-          diff-search: true
-          file-url: https://unpkg.com/your-http@latest/package.json
-          static-checking: localIsNew
-      - run: echo "${{ steps.check_version.outputs.changed }}""
-      - name: version check
-        if: ${{ steps.check_version.outputs.changed == 'false' }}
+      - uses: actions/checkout@v2
+      - id: get_code_version
+        run: |
+          content=`cat ./package.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo "::set-output name=packageJson::$content"
+      - id: get_npm_package_version
+        run: |
+          content=`curl -X GET $URL`
+          echo "::set-output name=response::$content"
+      - id: compare
+        if: ${{ fromJson(steps.get_code_version.outputs.packageJson).version == fromJson(steps.get_npm_package_version.outputs.response).versions[fromJson(steps.get_code_version.outputs.packageJson).version].version }}
         run: exit 69
-
