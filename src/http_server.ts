@@ -11,6 +11,6 @@ function Server(this: any, routers: any[]) {
   (this as This).netServer = net.createServer((socket: Socket) => new (InitEvents as any)(socket).data(routers));
 }
 
-Server.prototype.listen = function (this: any, ...args: Array<string | number | Function>) { this.netServer.listen(...args) }
+Server.prototype.listen = function listen(this: any, ...args: Array<string | number | Function>) { this.netServer.listen(...args) }
 
-export { Server }
+export { Server };

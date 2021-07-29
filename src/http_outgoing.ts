@@ -1,6 +1,8 @@
 import { Socket } from 'net';
+import { verifyCookie } from './utils';
 
 const kHeaders = Symbol('kHeaders');
+const kCookies = Symbol('kCookies');
 
 function OutgoingMessage(this: any, socket: Socket) {
   this.socket = socket;
@@ -9,6 +11,7 @@ function OutgoingMessage(this: any, socket: Socket) {
   this.statusCode = null;
   this.statusMessage = null;
   this[kHeaders] = {};
+  this[kCookies] = [];
   this.body = null;
   this.server = 'The greatest http server in the world.';
   this.lastModified = new Date();
@@ -26,7 +29,13 @@ Object.defineProperty(OutgoingMessage.prototype, 'headers', {
   }
 });
 
-OutgoingMessage.prototype.status = function (this: any, code: number) {
+Object.defineProperty(OutgoingMessage.prototype, 'cookies', {
+  get: function() {
+    return this[kCookies];
+  }
+});
+
+OutgoingMessage.prototype.status = function status(this: any, code: number) {
   if (this.wasSent) throw 'Cannot change response after it was already send.';
 
   const statusCode = STATUS_CODES[code];
@@ -41,7 +50,7 @@ OutgoingMessage.prototype.status = function (this: any, code: number) {
   return this;
 }
 
-OutgoingMessage.prototype.write = function (this: any, message: string | number | object | Array<any>) {
+OutgoingMessage.prototype.write = function write(this: any, message: string | number | object | Array<any>) {
   if (typeof message != 'string') message = message.toString();
   if (!this.statusCode) this.status(200);
 
@@ -53,7 +62,7 @@ OutgoingMessage.prototype.write = function (this: any, message: string | number 
   return this;
 }
 
-OutgoingMessage.prototype.json = function (this: any, message: object) {
+OutgoingMessage.prototype.json = function json(this: any, message: object) {
   if (!this.statusCode) this.status(200);
   if (typeof message != 'object') throw 'invalid JSON.';
 
@@ -63,6 +72,15 @@ OutgoingMessage.prototype.json = function (this: any, message: object) {
   this.body = JSON.stringify(message);
 
   return this;
+}
+
+OutgoingMessage.prototype.setCookie = function setCookie(this: any, key: string, value: string, settings: { [key: string]: any } = {}) {
+  verifyCookie(settings);
+  this[kCookies].push({
+    name: key,
+    value,
+    settings
+  });
 }
 
 const STATUS_CODES: { [key: number]: string } = {
