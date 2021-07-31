@@ -32,6 +32,6 @@ jobs:
         with:
           draft: false
           prerelease: false
-          tag_name: ${{ jsonFrom(steps.version.packageJSON).version }}
+          tag_name: ${{ fromJson(steps.version.packageJSON).version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
