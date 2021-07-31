@@ -26,9 +26,9 @@ jobs:
       - run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
-      - working-directory: ./dist
-        id: create_release
+      - id: create_release
         uses: actions/create-release@v1
+        working-directory: ./dist
         with:
           draft: false
           prerelease: false
