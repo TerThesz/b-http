@@ -10,7 +10,7 @@
     "start": "nodemon src/http.ts",
     "clean": "rm -rf ./dist/",
     "build": "tsc --project . && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock && cd dist/ && ls",
-    "publish": "tsc --project . && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock && cd dist/ && ls && echo $NPM && NODE_AUTH_TOKEN=$NPM npm publish",
+    "publish": "tsc --project . && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock && cd dist/ && ls && echo $NODE_AUTH_TOKEN && npm publish",
     "start-build": "cd dist && node http && cd ../",
     "test": "echo test",
     "local-test": "nodemon ./prdim.ts"
