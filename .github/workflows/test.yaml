@@ -20,13 +20,18 @@ jobs:
       - run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
+      - id: version
+        run: |
+          content=`cat ./package.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo "::set-output name=packageJson::$content"
       - id: create_release
-        uses: actions/checkout@v1
-      - uses: nyaa8/package-version@v1
       - uses: actions/create-release@v1
         with:
           draft: false
           prerelease: false
-          tag_name: ${{ env.PACKAGE_VERSION }}
+          tag_name: ${{ jsonFrom(steps.version.packageJSON).version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
