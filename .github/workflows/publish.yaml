@@ -15,7 +15,5 @@ jobs:
         run: yarn install
       - id: build_package
         run: yarn publish
-      - id: publish_package
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+        env:
+          NPM: ${{ secrets.NPM_TOKEN }}

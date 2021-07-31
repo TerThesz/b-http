@@ -1,6 +1,6 @@
 {
   "name": "your-http",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "main": "http.js",
   "description": "A simple http server made for fun",
   "repository": "https://github.com/TerThesz/your-http",
@@ -10,7 +10,7 @@
     "start": "nodemon src/http.ts",
     "clean": "rm -rf ./dist/",
     "build": "tsc --project . && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock && cd dist/ && ls",
-    "publish": "tsc --project . && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock && cd dist/ && ls && npm publish",
+    "publish": "tsc --project . && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock && cd dist/ && ls && NODE_AUTH_TOKEN=$NPM npm publish",
     "start-build": "cd dist && node http && cd ../",
     "test": "echo test",
     "local-test": "nodemon ./prdim.ts"
