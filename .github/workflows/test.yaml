@@ -20,11 +20,6 @@ jobs:
       - run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
-      - id: zip_build
-        uses: papeloto/action-zip@v1
-        with:
-          files: dist/
-          dest: your-http.zip
       - id: create_release
         uses: actions/checkout@v1
       - uses: nyaa8/package-version@v1
