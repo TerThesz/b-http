@@ -1,6 +1,6 @@
 {
   "name": "your-http",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "main": "http.js",
   "description": "A simple http server made for fun",
   "repository": "https://github.com/TerThesz/your-http",
