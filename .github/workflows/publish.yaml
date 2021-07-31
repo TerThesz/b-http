@@ -17,8 +17,8 @@ jobs:
         run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
-        working-directory: ./dist
-      - id: publish_package
+      - working-directory: ./dist
+        id: publish_package
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
