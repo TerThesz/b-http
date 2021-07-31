@@ -3,6 +3,8 @@ on:
   release:
     types:
       - published
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -15,5 +17,3 @@ jobs:
         run: yarn install
       - id: build_package
         run: yarn publish
-        env:
-          NPM: ${{ secrets.NPM_TOKEN }}
