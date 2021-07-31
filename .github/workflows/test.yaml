@@ -24,9 +24,12 @@ jobs:
       - id: build_package
         run: yarn install
       - run: yarn build
+      - run: ls
       - run: cp ./package.json ./dist/package.json
+      - run: ls
       - run: cp ./yarn.lock ./dist/yarn.lock
       - run: cd ./dist
+      - run: ls
       - id: create_release
         uses: actions/create-release@v1
         with:
