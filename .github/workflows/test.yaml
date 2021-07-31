@@ -10,16 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ADD TESTS!!
-      - name: build_package
-        id: build_package
         uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 16
-      - run: yarn install
-      - run: yarn build
-      - run: cp ./package.json ./dist/package.json
-      - run: cp ./yarn.lock ./dist/yarn.lock
       - id: version
         run: |
           content=`cat ./package.json`
@@ -27,6 +21,11 @@ jobs:
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
           echo "::set-output name=packageJson::$content"
+      - id: build_package
+      - run: yarn install
+      - run: yarn build
+      - run: cp ./package.json ./dist/package.json
+      - run: cp ./yarn.lock ./dist/yarn.lock
       - id: create_release
         uses: actions/create-release@v1
         with:
