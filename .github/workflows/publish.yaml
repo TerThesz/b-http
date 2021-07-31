@@ -17,7 +17,6 @@ jobs:
         run: yarn install
       - id: build_package
         run: yarn build
-      - run: find ./ -name "*.ts" -delete
-      - id: publish
-        run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
-      - run: npm publish
+      - id: publish && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock
+        run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> dist/.npmrc
+      - run: cd dist && npm publish
