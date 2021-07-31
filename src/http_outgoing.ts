@@ -50,7 +50,7 @@ OutgoingMessage.prototype.status = function status(this: any, code: number) {
   return this;
 }
 
-OutgoingMessage.prototype.write = function write(this: any, message: string | number | object | Array<any>) {
+OutgoingMessage.prototype.write = function write(this: any, message: string | number | object) {
   if (typeof message != 'string') message = message.toString();
   if (!this.statusCode) this.status(200);
 
@@ -72,6 +72,16 @@ OutgoingMessage.prototype.json = function json(this: any, message: object) {
   this.body = JSON.stringify(message);
 
   return this;
+}
+
+OutgoingMessage.prototype.send = function send(this: any, arg: any) {
+  const functions: { [key: string]: any } = {
+    number: "status",
+    object: "json"
+  }
+
+  if (functions[typeof arg]) this[functions[typeof arg]](arg);
+  else this.write(arg);
 }
 
 OutgoingMessage.prototype.setCookie = function setCookie(this: any, key: string, value: string, settings: { [key: string]: any } = {}) {
