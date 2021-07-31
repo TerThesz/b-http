@@ -9,7 +9,7 @@
   "scripts": {
     "start": "nodemon src/http.ts",
     "clean": "rm -rf ./dist/",
-    "build": "tsc --project .",
+    "build": "tsc --project . && cp package.json div/package.json && cp yarn.lock dist/yarn.lock && cd dist/ && ls",
     "start-build": "cd dist && node http && cd ../",
     "test": "echo test",
     "local-test": "nodemon ./prdim.ts"
