@@ -16,7 +16,7 @@ jobs:
       - id: install_dependencies
         run: yarn install
       - id: build_package
-        run: yarn build && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock
+        run: yarn build && cp package.json dist/package.json && cp yarn.lock dist/yarn.lock && cp README.md dist/README.md
       - id: publish
         run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> dist/.npmrc
       - run: cd dist && npm publish
