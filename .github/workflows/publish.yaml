@@ -17,7 +17,7 @@ jobs:
         run: yarn build
       - run: cp ./package.json ./dist/package.json
       - run: cp ./yarn.lock ./dist/yarn.lock
-        id: publish_package
+      - id: publish_package
         uses: JS-DevTools/npm-publish@v1
         working-directory: ./dist
         with:
