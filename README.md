@@ -106,7 +106,7 @@ yarn add your-http
 | protocol | Response HTTP protocol (HTTP/1.1) | string |
 | statusCode | Response status code | number |
 | statusMessage | Response status message | string |
-| headers() | Returns all headers | Object Property |
+| headers | Returns all headers | Object Property |
 | body | Response body | any |
 | server | Server name | string |
 | lastModified | Last change to the response | Date |
@@ -116,7 +116,8 @@ yarn add your-http
 | json(object) | Set content type to application/json and change response body | Function |
 | cookies | Returns all cookies | Object Property |
 | setCookie(name, value, settings: object) | Adds a cookie to the response headers | Function |
-| send() | Automatically sets content type and changes body | Function |
+| send(any) | Automatically sets content type and changes body | Function |
+| setHeaders(name, value) | Adds a response header | Function |
 
 ##### DO NOT MANUALLY CHANGE RESPONSE INFORMATION. Use response functions instead ( All values with type: `'Function' or 'Object Property'` );
 
@@ -175,7 +176,20 @@ res.functionName/* send or write or json or status */(value);
 req.query;
 ...
 ```
-###### 
+##### Headers
+
+###### Getting request headers
+``` javascript
+...
+req.headers;
+...
+```
+###### Adding a response header
+``` javascript
+...
+res.setHeader('name', 'value');
+...
+```
 
 <br/>
 <br/>

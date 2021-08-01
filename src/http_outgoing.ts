@@ -93,6 +93,12 @@ OutgoingMessage.prototype.setCookie = function setCookie(this: any, key: string,
   });
 }
 
+OutgoingMessage.prototype.setHeader = function setHeader(this: any, key: string, value: string) {
+  // TODO: Header verification
+  this[kHeaders][key] = value;
+  this.rawHeaders.push(key + ": " + value);
+}
+
 const STATUS_CODES: { [key: number]: string } = {
   100: 'Continue',                   // RFC 7231 6.2.1
   101: 'Switching Protocols',        // RFC 7231 6.2.2
