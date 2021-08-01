@@ -82,7 +82,10 @@ yarn add your-http
 `req, res, next`
 
 ##### 3.B A Request (req)
-###### All request information is stored in here (headers, cookies, body...).
+###### All request information is stored in here.
+
+###### Request object:
+###### How to use it: [Click here](#3-detailed-usage)
 
 | Value | Description | Type |
 | ------|:------------|-----:|
@@ -97,8 +100,26 @@ yarn add your-http
 | query | Returns all query parameters | Object Property |
 | cookies | Returns all cookies | Object Property |
 
+###### Only useful functions:
+``` javascript
+req.headers;
+
+req.rawHeaders;
+
+req.body;
+
+req.ip;
+
+req.query;
+
+req.cookies;
+```
+
 ##### 3.B B Response (res)
-###### All response information is stored in here (headers, body...).
+###### All response information is stored in here.
+
+###### Response object:
+###### How to use it: [Click here](#3-detailed-usage)
 
 | Value | Description | Type |
 | ------|:------------|-----:|
@@ -106,18 +127,37 @@ yarn add your-http
 | protocol | Response HTTP protocol (HTTP/1.1) | string |
 | statusCode | Response status code | number |
 | statusMessage | Response status message | string |
-| headers() | Returns all headers | Object Property |
+| headers | Returns all headers | Object Property |
 | body | Response body | any |
 | server | Server name | string |
 | lastModified | Last change to the response | Date |
 | canBeSent, wasSent | Values used by the http server. | boolean |
 | status(number) | Change status code of the response | Function |
-| write(message) | Set content type to text and change response body | Function |
+| write(string) | Set content type to text and change response body | Function |
 | json(object) | Set content type to application/json and change response body | Function |
 | cookies | Returns all cookies | Object Property |
 | setCookie(name, value, settings: object) | Adds a cookie to the response headers | Function |
+| send(any) | Automatically sets content type and changes body | Function |
+| setHeaders(name, value) | Adds a response header | Function |
 
-##### DO NOT MANUALLY CHANGE RESPONSE INFORMATION. Use response functions instead ( All values with type: `'Function' or 'Object Property'` );
+###### Only useful functions:
+``` javascript
+res.headers;
+
+res.status(number);
+
+res.write(string);
+
+res.json(object);
+
+res.send(any);
+
+res.setCookie(name, value, settings);
+
+res.setHeader(name, value);
+```
+
+##### DO NOT MANUALLY CHANGE RESPONSE INFORMATION. Use response functions instead ( All functions displayed above );
 
 ##### 3.B C NextFunction (next)
 ###### If called, next router will run after the current one finishes.
@@ -135,6 +175,59 @@ yarn add your-http
     console.log('🏃 on port 3000.'));
 ```
 ###### Tip: Use ip: '0.0.0.0' to get IPv4 from req.ip
+<br/>
+
+### 3. Detailed Usage
+
+##### 1. Working with cookies
+
+###### Getting all request cookies
+```javascript
+...
+req.cookies;
+...
+```
+###### Adding response cookies
+```javascript
+...
+res.setCookie('name', 'value', { Settings: true });
+...
+```
+
+##### 2. Query & body
+
+###### Getting request body
+``` javascript
+...
+req.body;
+...
+```
+###### Returning response body
+``` javascript
+...
+res.functionName/* send or write or json or status */(value);
+...
+```
+###### Getting query parameters
+``` javascript
+...
+req.query;
+...
+```
+##### Headers
+
+###### Getting request headers
+``` javascript
+...
+req.headers;
+...
+```
+###### Adding a response header
+``` javascript
+...
+res.setHeader('name', 'value');
+...
+```
 
 <br/>
 <br/>
