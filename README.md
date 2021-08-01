@@ -82,7 +82,10 @@ yarn add your-http
 `req, res, next`
 
 ##### 3.B A Request (req)
-###### All request information is stored in here (headers, cookies, body...).
+###### All request information is stored in here.
+
+###### Request object:
+###### How to use it: [Click here](#3-detailed-usage)
 
 | Value | Description | Type |
 | ------|:------------|-----:|
@@ -97,8 +100,26 @@ yarn add your-http
 | query | Returns all query parameters | Object Property |
 | cookies | Returns all cookies | Object Property |
 
+###### Only useful functions:
+``` javascript
+req.headers;
+
+req.rawHeaders;
+
+req.body;
+
+req.ip;
+
+req.query;
+
+req.cookies;
+```
+
 ##### 3.B B Response (res)
-###### All response information is stored in here (headers, body...).
+###### All response information is stored in here.
+
+###### Response object:
+###### How to use it: [Click here](#3-detailed-usage)
 
 | Value | Description | Type |
 | ------|:------------|-----:|
@@ -112,14 +133,31 @@ yarn add your-http
 | lastModified | Last change to the response | Date |
 | canBeSent, wasSent | Values used by the http server. | boolean |
 | status(number) | Change status code of the response | Function |
-| write(message) | Set content type to text and change response body | Function |
+| write(string) | Set content type to text and change response body | Function |
 | json(object) | Set content type to application/json and change response body | Function |
 | cookies | Returns all cookies | Object Property |
 | setCookie(name, value, settings: object) | Adds a cookie to the response headers | Function |
 | send(any) | Automatically sets content type and changes body | Function |
 | setHeaders(name, value) | Adds a response header | Function |
 
-##### DO NOT MANUALLY CHANGE RESPONSE INFORMATION. Use response functions instead ( All values with type: `'Function' or 'Object Property'` );
+###### Only useful functions:
+``` javascript
+res.headers;
+
+res.status(number);
+
+res.write(string);
+
+res.json(object);
+
+res.send(any);
+
+res.setCookie(name, value, settings);
+
+res.setHeader(name, value);
+```
+
+##### DO NOT MANUALLY CHANGE RESPONSE INFORMATION. Use response functions instead ( All functions displayed above );
 
 ##### 3.B C NextFunction (next)
 ###### If called, next router will run after the current one finishes.
