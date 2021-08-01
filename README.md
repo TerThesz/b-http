@@ -116,6 +116,7 @@ yarn add your-http
 | json(object) | Set content type to application/json and change response body | Function |
 | cookies | Returns all cookies | Object Property |
 | setCookie(name, value, settings: object) | Adds a cookie to the response headers | Function |
+| send() | Automatically sets content type and changes body | Function |
 
 ##### DO NOT MANUALLY CHANGE RESPONSE INFORMATION. Use response functions instead ( All values with type: `'Function' or 'Object Property'` );
 
@@ -135,6 +136,46 @@ yarn add your-http
     console.log('🏃 on port 3000.'));
 ```
 ###### Tip: Use ip: '0.0.0.0' to get IPv4 from req.ip
+<br/>
+
+### 3. Detailed Usage
+
+##### 1. Working with cookies
+
+###### Getting all request cookies
+```javascript
+...
+req.cookies;
+...
+```
+###### Adding response cookies
+```javascript
+...
+res.setCookie('name', 'value', { Settings: true });
+...
+```
+
+##### 2. Query & body
+
+###### Getting request body
+``` javascript
+...
+req.body;
+...
+```
+###### Returning response body
+``` javascript
+...
+res.functionName/* send or write or json or status */(value);
+...
+```
+###### Getting query parameters
+``` javascript
+...
+req.query;
+...
+```
+###### 
 
 <br/>
 <br/>
