@@ -23,7 +23,7 @@
   "bugs": "https://github.com/TerThesz/your-http/issues",
   "dependencies": {
     "@types/glob": "^7.1.4",
-    "@types/node": "^16.4.0",
+    "@types/node": "^16.18.30",
     "glob": "^7.1.7",
     "net": "^1.0.2",
     "nodemon": "^2.0.12",
